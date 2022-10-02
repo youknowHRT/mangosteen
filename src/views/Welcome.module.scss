@@ -1,0 +1,14 @@
+.wrapper{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  >header{
+    flex-shrink: 0;
+  }
+  >main{
+    flex-grow: 1;
+  }
+  >footer{
+    flex-shrink: 0;
+  }
+}
