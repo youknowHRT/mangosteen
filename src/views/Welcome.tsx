@@ -4,13 +4,13 @@ import s from './Welcome.module.scss'
 import logo from '../assets/icons/mangosteen.svg'
 export const Welcome = defineComponent({
   setup(props, ctx) {
-    return ()=>(<div class={s.wrapper}>
-        <header>
-          <img src={logo} alt="" />
-        </header>
-        <main> <RouterView/> </main>
-        <footer>buttons</footer>
-      </div>
-    )
+    return ()=><div class={s.wrapper}>
+      <header>
+        <img src={logo} />
+        <h1>山竹记账</h1>
+      </header>
+      <main> <RouterView/> </main>
+      {/* <footer>buttons</footer> */}
+    </div>
   }
 })
