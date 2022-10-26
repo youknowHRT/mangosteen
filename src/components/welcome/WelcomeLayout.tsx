@@ -3,15 +3,15 @@ import s from './WelcomeLayout.module.scss'
 
 export const WelcomeLayout = defineComponent({
   setup(props, ctx) {
-    const {slots}=ctx
+    const {slots:{icon,title,buttons}}=ctx
     return ()=>(
       <div class={s.wrapper}>
         <div class={s.card}>
-          {slots.icon?.()}
-          {slots.title?.()}
+          {icon?.()}
+          {title?.()}
         </div>
         <div class={s.actions}>
-          {slots.buttons?.()}
+          {buttons?.()}
         </div>
       </div>
     )

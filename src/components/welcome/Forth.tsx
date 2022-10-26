@@ -6,7 +6,7 @@ import { WelcomeLayout } from './WelcomeLayout';
 
 export const Forth = defineComponent({
   setup(props, ctx) {
-    return <WelcomeLayout>
+    return ()=> <WelcomeLayout>
       {{
         icon:()=><img src={cloud} />,
         title:()=><h2>云备份<br/>再也不怕数据丢失</h2>,
