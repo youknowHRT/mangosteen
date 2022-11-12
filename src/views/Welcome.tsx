@@ -1,6 +1,6 @@
-import { defineComponent, ref } from 'vue';
-import { RouterView } from 'vue-router';
-import s from './Welcome.module.scss'
+import { defineComponent, ref, Transition, VNode } from 'vue';
+import { RouteLocationNormalizedLoaded, RouterView } from 'vue-router';
+import s from './welcome.module.scss'
 import logo from '../assets/icons/mangosteen.svg'
 export const Welcome = defineComponent({
   setup(props, ctx) {
@@ -9,8 +9,18 @@ export const Welcome = defineComponent({
         <img src={logo} />
         <h1>山竹记账</h1>
       </header>
-      <main class={s.main}> <RouterView/> </main>
-      {/* <footer>buttons</footer> */}
+      <main class={s.main}>
+        <RouterView name='main'>
+          {
+            ({Component:X, route: R}: {Component: VNode, route: RouteLocationNormalizedLoaded})=>
+            <Transition enterFromClass={s.slide_fade_enter_from} enterActiveClass={s.slide_fade_enter_active}
+            leaveActiveClass={s.slide_fade_leave_active} leaveToClass={s.slide_fade_leave_to}>
+              {X}
+            </Transition>
+          }
+        </RouterView>
+      </main>
+      <footer> <RouterView name='footer'></RouterView></footer>
     </div>
   }
 })
