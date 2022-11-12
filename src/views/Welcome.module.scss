@@ -18,7 +18,7 @@
     flex-direction: column;
     flex-grow: 1;
     position: relative;
-    margin: var(--welcome-norml-margin) var(--welcome-norml-margin) var(--welcome-nav-gap);
+    margin: 16px 16px var(--welcome-nav-gap);
   }
   >footer{
     flex-shrink: 0;
@@ -30,7 +30,7 @@
   left: 0;
   top: 0;
   width: 100%;
-  height: calc(100% - var(--welcome-norml-margin));
+  height: 100%;
   transition: all .5s ease-out;
 }
 
