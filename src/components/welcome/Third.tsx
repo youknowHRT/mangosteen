@@ -1,4 +1,3 @@
-import { defineComponent } from 'vue';
 import s from './welcome.module.scss'
 import { FunctionalComponent } from 'vue'
 
