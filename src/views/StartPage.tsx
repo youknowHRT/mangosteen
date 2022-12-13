@@ -4,6 +4,7 @@ import { Center } from '../shared/Center';
 import { FloatButton } from '../shared/FloatButton';
 import { Icon } from '../shared/Icon';
 import { Navbar } from '../shared/Navbar';
+import { Overlay } from '../shared/Overlay';
 import s from './StartPage.module.scss';
 export const StartPage = defineComponent({
   setup: (props, context) => {
@@ -26,9 +27,9 @@ export const StartPage = defineComponent({
           <Button class={s.button}>开始记账</Button>
         </div>
         <FloatButton iconName='add'/>
-        {/* {refOverlayVisible.value &&
+        {refOverlayVisible.value &&
           <Overlay onClose={() => refOverlayVisible.value = false} />
-        } */}
+        }
       </div>
     )
   }
