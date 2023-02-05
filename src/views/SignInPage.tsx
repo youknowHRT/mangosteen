@@ -44,7 +44,7 @@ export const SignInPage = defineComponent({
                 <FormItem label="验证码" type="validationCode"
                   placeholder='请输入六位数字'
                   v-model={formData.code} error={errors.code?.[0]} />
-                <FormItem style={{ paddingTop: '96px' }}>
+                <FormItem style={{ paddingTop: '36px' }}>
                   <Button>登录</Button>
                 </FormItem>
               </Form>
