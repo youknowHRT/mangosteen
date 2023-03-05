@@ -12,14 +12,9 @@ export const mockSession: Mock = (config) => {
 }
 
 export const mockTagIndex: Mock = (config) => {
-  let id = 0
-  const createId = () => {
-    id += 1
-    return id
-  }
   const createTag = (n = 1, attrs?: any) =>
-    Array.from({ length: n }).map(() => ({
-      id: createId(),
+    Array.from({ length: n }, (v, i) => i+1).map((id) => ({
+      id,
       name: faker.lorem.word(),
       sign: faker.internet.emoji(),
       kind: config.params.kind,
@@ -27,7 +22,7 @@ export const mockTagIndex: Mock = (config) => {
     }))
 
   if (config.params.kind === 'expenses') {
-    return [200, { resources: createTag(7) }]
+    return [200, { resources: createTag(72) }]
   } else {
     return [200, { resources: createTag(20) }]
   }
