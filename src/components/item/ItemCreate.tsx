@@ -35,13 +35,11 @@ export const ItemCreate = defineComponent({
       throw error;
     };
     const onSubmit = async () => {
-      const xxx =await http
+      await http
         .post<Resource<Item>>('/items', formData, {
           params: { _mock: 'itemCreate' },
         })
         .catch(onError);
-        console.log("🚀 ~ file: ItemCreate.tsx:39 ~ onSubmit ~ xxx:", xxx)
-
       router.push('/items');
     };
     return () => (
