@@ -1,7 +1,9 @@
+import axios, { AxiosResponse } from 'axios';
 import { defineComponent, PropType, reactive, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { useBool } from '../hooks/useBool';
 import { MainLayout } from '../layouts/MainLayout';
+import { BackIcon } from '../shared/BackIcon';
 import { Button } from '../shared/Button';
 import { Form, FormItem } from '../shared/Form';
 import { history } from '../shared/history';
@@ -13,7 +15,7 @@ import s from './SignInPage.module.scss';
 export const SignInPage = defineComponent({
   setup: (props, context) => {
     const formData = reactive({
-      email: '15921363438@163.com',
+      email: '',
       code: ''
     })
     const errors = reactive({
@@ -38,6 +40,7 @@ export const SignInPage = defineComponent({
         const response = await http.post<{ jwt: string }>('/session', formData)
           .catch(onError)
         localStorage.setItem('jwt', response.data.jwt)
+        // router.push('/sign_in?return_to='+ encodeURIComponent(route.fullPath))
         const returnTo = route.query.return_to?.toString()
         refreshMe()
         router.push(returnTo || '/')
@@ -50,19 +53,21 @@ export const SignInPage = defineComponent({
       throw error
     }
     const onClickSendValidationCode = async () => {
+
       disabled()
       const response = await http
-      .post('/validation_codes', { email: formData.email })
-      .catch(onError)
-      .finally(enable)
+        .post('/validation_codes', { email: formData.email })
+        .catch(onError)
+        .finally(enable)
       // 成功
       refValidationCode.value.startCount()
+
     }
     return () => (
       <MainLayout>{
         {
           title: () => '登录',
-          icon: () => <Icon name="left" />,
+          icon: () => <BackIcon />,
           default: () => (
             <div class={s.wrapper}>
               <div class={s.logo}>
@@ -75,11 +80,11 @@ export const SignInPage = defineComponent({
                   v-model={formData.email} error={errors.email?.[0]} />
                 <FormItem ref={refValidationCode} label="验证码" type="validationCode"
                   placeholder='请输入六位数字'
-                  countFrom={3}
+                  countFrom={1}
                   disabled={refDisabled.value}
                   onClick={onClickSendValidationCode}
                   v-model={formData.code} error={errors.code?.[0]} />
-                <FormItem style={{ paddingTop: '36px' }}>
+                <FormItem style={{ paddingTop: '96px' }}>
                   <Button type="submit">登录</Button>
                 </FormItem>
               </Form>
